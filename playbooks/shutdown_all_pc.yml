@@ -1,0 +1,8 @@
+---
+- name: Shutdown all PC
+  hosts: all
+  become: yes
+  tasks:
+    - name: Start Shutdown on ALL PC
+      community.general.shutdown:
+...
