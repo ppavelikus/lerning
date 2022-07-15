@@ -4,6 +4,7 @@ debian2 ansible_host=192.168.15.6
 debian4 ansible_host=192.168.15.10
 centos1 ansible_host=192.168.15.9 
 centos2 ansible_host=192.168.15.8 
+#debian5 ansible_host=192.168.102.121
 [centos]
 centos1 ansible_host=192.168.15.9
 centos2 ansible_host=192.168.15.8

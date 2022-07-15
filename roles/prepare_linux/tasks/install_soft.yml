@@ -1,0 +1,27 @@
+ #==== Debian ====
+- block:
+  - name: install sudo,mc,net-tools on Debian
+    apt: name=sudo,mc,net-tools state=latest install_recommends=yes update_cache=yes
+  - name: Set user to group sudo
+    shell:
+      cmd: /usr/sbin/usermod -aG sudo user
+    register: output
+  - debug: var=output
+  when: ansible_os_family=="Debian"
+  #==== RedHat ====
+- block:
+  - name: install sudo,mc,net-tools on RedHat
+    yum:
+      state: latest
+      name:
+        - sudo
+        - mc
+        - net-tools
+      update_cache: yes
+  - name: Set user into group wheel
+    shell:
+      cmd: /usr/sbin/usermod -aG wheel user
+    register: output
+  - debug: var=output
+  when: ansible_os_family=="RedHat"
+...

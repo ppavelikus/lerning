@@ -1,0 +1,7 @@
+---
+- name: asdasd
+  hosts: "{{hn}}"
+  roles:
+    - role: prepare_linux
+  #roles:
+  #  role: prepare_linux

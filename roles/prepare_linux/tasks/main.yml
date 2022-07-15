@@ -1,0 +1,17 @@
+---
+# tasks file for prepare_linux
+- name: Copy configs to root
+  become: yes
+  copy: src={{ item }} dest=/root/
+  loop:
+    - .inputrc
+    - .bashrc
+- name: Copy configs to user
+  copy: src={{ item }} dest="{{ homeuser }}"
+  loop:
+    - .inputrc
+    - .bashrc
+  when: homeuser is exists
+- name: run install tasks
+  become: yes
+  import_tasks: install_soft.yml
