@@ -1,0 +1,23 @@
+- name: Update soft on linux servers
+  hosts: all
+  become: yes
+  tasks:
+  - block:
+    - name: Update on Debian
+      apt: 
+        update_cache: yes
+        upgrade: full
+      register: debian_output
+    - debug:
+        var: debian_output
+    when: ansible_os_family == "Debian"
+  - block:
+    - name: Update on RedHat
+      yum: 
+        name: "*"
+        state: latest
+        update_cache: yes
+      register: redhat_output
+    - debug:
+        var: redhat_output
+    when: ansible_os_family == "RedHatn"
