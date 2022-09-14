@@ -1,0 +1,9 @@
+- name: test
+  hosts: new_linux
+  become: yes
+  vars:
+    test: kadmin
+    username: '/home/{{ test }}'
+  tasks:
+    - debug:
+        var: test, username

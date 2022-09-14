@@ -15,3 +15,5 @@
 - name: run install tasks
   become: yes
   import_tasks: install_soft.yml
+- debug:
+    var: homeuser

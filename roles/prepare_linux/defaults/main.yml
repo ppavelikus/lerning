@@ -1,3 +1,4 @@
 ---
 # defaults file for prepare_linux
-homeuser: /home/user
+username: kadmin
+homeuser: "/home/{{ username }}"

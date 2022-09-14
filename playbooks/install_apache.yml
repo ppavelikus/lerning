@@ -1,0 +1,23 @@
+- name: Task about install apache
+  hosts: all
+  become: yes
+  tasks:
+    #==== Debian ====
+    - block:
+      - name: install apache on Debian
+        apt: name=apache2 state=latest install_recommends=yes update_cache=yes
+        register: output
+      - debug: var=output
+      when: ansible_os_family=="Debian"
+  #==== RedHat ====
+    - block:
+      - name: install apache on RedHat
+        yum:
+          state: latest
+          name:
+            - httpd
+          update_cache: yes
+        register: output
+      - debug: var=output
+      when: ansible_os_family=="RedHat"
+...
