@@ -2,22 +2,34 @@
 debian3 ansible_host=192.168.15.5
 debian2 ansible_host=192.168.15.6 
 debian4 ansible_host=192.168.15.10
-centos1 ansible_host=192.168.15.9 
-centos2 ansible_host=192.168.15.8 
+debian1 ansible_host=192.168.15.4
+#centos1 ansible_host=192.168.15.9 
+#centos2 ansible_host=192.168.15.8 
 #debian5 ansible_host=192.168.102.121
-[centos]
-centos1 ansible_host=192.168.15.9
-centos2 ansible_host=192.168.15.8
+#[centos]
+#centos1 ansible_host=192.168.15.9
+#centos2 ansible_host=192.168.15.8
 [debian]
-debian3 ansible_host=192.168.15.5
-debian2 ansible_host=192.168.15.6
+debian1 ansible_host=192.168.15.4
+debian2 ansible_host=192.168.15.5
+debian3 ansible_host=192.168.15.6
 debian4 ansible_host=192.168.15.10
-[new_linux]
-zabbix-proxy-dh ansible_host=192.168.75.11
-zabbix-proxy-1 ansible_host=10.10.10.10
-[new_linux:vars]
-ansible_user                 = kadmin
-ansible_password             = <MrakoDilirium>
-ansible_ssh_private_key_file = /root/.ssh/id_rsa
-ansible_become_method        = su
-ansible_become_password      = Charli93Kline
+[k8s]
+k8s1 ansible_host=192.168.75.50
+k8s2 ansible_host=192.168.75.51
+k8s3 ansible_host=192.168.75.52
+k8s4 ansible_host=192.168.75.53
+k8s5 ansible_host=192.168.75.54
+[masters]
+k8s1
+[workers]
+k8s2
+k8s3
+k8s4
+k8s5
+#[zabbix_proxies]
+#zabbix-proxy-dh ansible_host=192.168.75.11
+#zabbix-proxy-1 ansible_host=10.10.10.10
+[together:children]
+#zabbix_proxies
+k8s

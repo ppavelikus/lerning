@@ -1,0 +1,15 @@
+---
+- name: Update repo on Oracle linux
+  hosts: "{{ hn }}"
+  become: yes
+  tasks:
+    - name: Copy repo to /etc
+      ansible.builtin.copy:
+        src: oracle-linux-ol7.repo
+        dest: /etc/yum.repos.d/oracle-linux-ol7.repo
+        force: true
+    - name: yum update 
+      ansible.builtin.yum:
+        name: "*"
+        state: latest
+...

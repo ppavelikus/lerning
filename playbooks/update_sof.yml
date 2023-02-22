@@ -1,5 +1,5 @@
 - name: Update soft on linux servers
-  hosts: all
+  hosts: "{{ hn }}"
   become: yes
   tasks:
   - block:

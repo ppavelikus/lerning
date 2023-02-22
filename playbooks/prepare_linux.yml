@@ -1,7 +1,5 @@
 ---
 - name: start role
-  hosts: "{{hname}}"
+  hosts: "{{ hn }}"
   roles:
     - role: prepare_linux
-  #roles:
-  #  role: prepare_linux

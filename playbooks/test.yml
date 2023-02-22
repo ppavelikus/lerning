@@ -1,9 +1,26 @@
 - name: test
-  hosts: new_linux
+  hosts: k8s
   become: yes
   vars:
     test: kadmin
     username: '/home/{{ test }}'
+#    username: '/etc/hosts'
   tasks:
+    - name: "Check for folder {{ username }}"
+      ansible.builtin.stat:
+        path: username
+      register: result_of_username
     - debug:
-        var: test, username
+        var: result_of_username.stat
+    - debug:
+        msg: "Folder {{ username }} is exists"
+      when: username is exists
+    - debug:
+        msg: "Folder {{ username }} is not exists"
+      when: username is not exists
+    - debug:
+        msg: "Folder {{ username }} is exists"
+      when: result_of_username.stat.exists and result_of_username.stat.isdir
+    - debug:
+        msg: "Folder {{ username }} is not exists"
+      when: not result_of_username.stat.exists

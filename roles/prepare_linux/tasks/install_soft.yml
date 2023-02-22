@@ -10,13 +10,14 @@
   when: ansible_os_family=="Debian"
   #==== RedHat ====
 - block:
-  - name: install sudo,mc,net-tools on RedHat
+  - name: install sudo,mc,net-tools,nano on RedHat
     yum:
       state: latest
       name:
         - sudo
         - mc
         - net-tools
+        - nano
       update_cache: yes
   - name: Set user into group wheel
     shell:

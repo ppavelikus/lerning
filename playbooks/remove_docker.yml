@@ -1,0 +1,17 @@
+---
+- name: Remove old Docker on Debian
+  hosts: "{{ hn }}"
+  become: true
+  tasks:
+    - name: Remove Docker
+      ansible.builtin.apt:
+        name:
+          - docker
+          - docker.io
+          - docker-compose
+          - docker-registry
+        state: absent
+        update_cache: true
+      when: ansible_facts['os_family'] == "Debian"
+...
+

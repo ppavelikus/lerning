@@ -6,14 +6,15 @@
   loop:
     - .inputrc
     - .bashrc
-- name: Copy configs to user
+- name: Copy configs to {{ homeuser }}
+  become: yes
   copy: src={{ item }} dest="{{ homeuser }}"
   loop:
     - .inputrc
     - .bashrc
-  when: homeuser is exists
+#  when: homeuser is exists
+- debug:
+    var: homeuser
 - name: run install tasks
   become: yes
   import_tasks: install_soft.yml
-- debug:
-    var: homeuser
