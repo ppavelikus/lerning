@@ -141,3 +141,9 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
 gpgcheck=1
 enabled=1
 
+[ol7_GlusterFs8]
+name=Oracle Linux $releasever GlusterFs ($basearch)
+baseurl=https://yum$ociregion.$ocidomain/repo/OracleLinux/OL7/gluster8/$basearch/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-oracle
+gpgcheck=1
+enabled=1

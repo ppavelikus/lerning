@@ -1,0 +1,9 @@
+- name: Update host on linux servers
+  hosts: "{{ hn }}"
+  become: yes
+  tasks:
+  - name: Update on Oracle
+    ansible.builtin.lineinfile:
+      path: /etc/hosts
+      line: "192.168.75.50 k8s-1\n192.168.75.51 k8s-2\n192.168.75.52 k8s-3\n192.168.75.53 k8s-4\n"
+    

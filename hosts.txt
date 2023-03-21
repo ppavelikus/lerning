@@ -19,7 +19,12 @@ k8s1 ansible_host=192.168.75.50
 k8s2 ansible_host=192.168.75.51
 k8s3 ansible_host=192.168.75.52
 k8s4 ansible_host=192.168.75.53
-k8s5 ansible_host=192.168.75.54
+#k8s5 ansible_host=192.168.75.54
+
+[dlps]
+dpl2 ansible_host=10.10.10.117
+dpl3 ansible_host=10.10.10.118
+
 [masters]
 k8s1
 [workers]
@@ -33,3 +38,4 @@ k8s5
 [together:children]
 #zabbix_proxies
 k8s
+dlps
