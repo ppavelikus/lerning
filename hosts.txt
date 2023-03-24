@@ -24,6 +24,8 @@ k8s4 ansible_host=192.168.75.53
 [dlps]
 dpl2 ansible_host=10.10.10.117
 dpl3 ansible_host=10.10.10.118
+[docker_sem]
+docker1 ansible_host=192.168.103.37
 
 [masters]
 k8s1
@@ -39,3 +41,4 @@ k8s5
 #zabbix_proxies
 k8s
 dlps
+docker_sem

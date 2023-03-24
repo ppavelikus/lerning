@@ -3,13 +3,15 @@
   hosts: "{{ hn }}"
   become: yes
   tasks:
-    - name: Copy repo to /etc
-      ansible.builtin.copy:
-        src: oracle-linux-ol7.repo
-        dest: /etc/yum.repos.d/oracle-linux-ol7.repo
-        force: true
-    - name: yum update 
-      ansible.builtin.yum:
-        name: "*"
-        state: latest
+    - block:
+      - name: Copy repo to /etc
+        ansible.builtin.copy:
+          src: oracle-linux-ol7.repo
+          dest: /etc/yum.repos.d/oracle-linux-ol7.repo
+          force: true
+      - name: yum update 
+        ansible.builtin.yum:
+          name: "*"
+          state: latest
+      when: ansible_distribution_major_version == "7" and ansible_os_family=="RedHat"
 ...
