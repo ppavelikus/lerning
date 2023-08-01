@@ -1,0 +1,6 @@
+---
+# handlers file for install_zabbix_agent
+- name: Restart zabbix-agent
+  ansible.builtin.service:
+    name: zabbix-agent
+    state: restarted

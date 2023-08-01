@@ -1,0 +1,65 @@
+---
+# tasks file for install_zabbix_agent
+#####
+## BLOCK For Debian OS Family
+#####
+- block:
+  - name: Install https on Debian
+    ansible.builtin.apt:
+      deb: https://repo.zabbix.com/zabbix/5.0/debian/pool/main/z/zabbix-release/zabbix-release_5.0-2+debian11_all.deb
+
+  - name: Install Zabbix Agent on Debian
+    ansible.builtin.apt:
+      name:
+        - zabbix-agent
+      state: latest
+      update_cache: true
+
+  - name: Start Zabbix Agent
+    ansible.builtin.service:
+      name: "zabbix-agent"
+      enabled: true
+      state: started
+
+  - name: Copy config
+    ansible.builtin.copy:
+      src: "zabbix_agentd.conf"
+      dest: /etc/zabbix/
+      force: true
+    notify:
+      - Restart zabbix-agent
+
+  when: ansible_facts['os_family'] == "Debian" and ansible_facts['distribution_major_version'] == "11"
+#####
+## BLOCK for OracleLinux OS Family
+#####
+- block:
+  - name: Install Zabbix Repo
+    ansible.builtin.yum:
+      name: https://repo.zabbix.com/zabbix/5.4/rhel/7/x86_64/zabbix-release-5.4-1.el7.noarch.rpm
+      state: latest
+      update_cache: true
+
+  - name: Install Zabbix Agent on RedHat
+    ansible.builtin.yum:
+      name:
+        - zabbix-agent
+      state: latest
+      update_cache: true
+
+  - name: Start Zabbix Agent
+    ansible.builtin.service:
+      name: "zabbix-agent"
+      enabled: true
+      state: started
+
+  - name: Copy config
+    ansible.builtin.copy:
+      src: "zabbix_agentd.conf"
+      dest: /etc/zabbix/
+      force: true
+    notify:
+      - Restart zabbix-agent
+
+  when: ansible_facts['os_family'] == "RedHat"
+

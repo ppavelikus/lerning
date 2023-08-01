@@ -1,5 +1,7 @@
 ---
 - name: start role
   hosts: "{{ hn }}"
+  become: yes
   roles:
     - role: prepare_linux
+    - role: install_zabbix_agent

@@ -19,13 +19,16 @@ k8s1 ansible_host=192.168.75.50
 k8s2 ansible_host=192.168.75.51
 k8s3 ansible_host=192.168.75.52
 k8s4 ansible_host=192.168.75.53
-#k8s5 ansible_host=192.168.75.54
+[gitlab]
+k8s5 ansible_host=192.168.75.54
 
-[dlps]
-dpl2 ansible_host=10.10.10.117
-dpl3 ansible_host=10.10.10.118
 [docker_sem]
 docker1 ansible_host=192.168.103.37
+[k8s-sem]
+k8s-sem-1    ansible_host=192.168.103.45
+k8s-sem-2    ansible_host=192.168.103.42
+k8s-sem-3    ansible_host=192.168.103.43
+k8s-sem-4-pc ansible_host=192.168.103.44
 
 [masters]
 k8s1
@@ -42,3 +45,4 @@ k8s5
 k8s
 dlps
 docker_sem
+k8s-sem

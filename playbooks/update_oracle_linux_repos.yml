@@ -6,9 +6,12 @@
     - block:
       - name: Copy repo to /etc
         ansible.builtin.copy:
-          src: oracle-linux-ol7.repo
-          dest: /etc/yum.repos.d/oracle-linux-ol7.repo
+          src: "{{ item }}"
+          dest: /etc/yum.repos.d/
           force: true
+        loop:
+          - oracle-linux-ol7.repo
+#          - zabbix-5-4.repo
       - name: yum update 
         ansible.builtin.yum:
           name: "*"
