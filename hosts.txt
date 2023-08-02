@@ -24,7 +24,7 @@ k8s5 ansible_host=192.168.75.54
 
 [docker_sem]
 docker1 ansible_host=192.168.103.37
-[k8s-sem]
+[k8s_sem]
 k8s-sem-1    ansible_host=192.168.103.45
 k8s-sem-2    ansible_host=192.168.103.42
 k8s-sem-3    ansible_host=192.168.103.43
@@ -44,4 +44,4 @@ k8s5
 #zabbix_proxies
 k8s
 docker_sem
-k8s-sem
+k8s_sem
