@@ -43,6 +43,5 @@ k8s5
 [together:children]
 #zabbix_proxies
 k8s
-dlps
 docker_sem
 k8s-sem

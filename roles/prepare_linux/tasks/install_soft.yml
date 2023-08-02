@@ -2,9 +2,15 @@
 - block:
   - name: install sudo,mc,net-tools on Debian
     apt: name=sudo,mc,net-tools,xz-utils state=latest install_recommends=yes update_cache=yes
-  - name: Set user to group sudo
-    shell:
-      cmd: /usr/sbin/usermod -aG sudo '{{ username }}'
+#  - name: Set user to group sudo
+#    shell:
+#      cmd: /usr/sbin/usermod -aG sudo '{{ username }}'
+#    register: output
+  - name: Set user with builtin module
+    ansible.builtin.user:
+      append: true
+      groups: sudo
+      name: kadmin
     register: output
   - debug: var=output
   when: ansible_os_family=="Debian"
