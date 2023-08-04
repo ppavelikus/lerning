@@ -21,7 +21,9 @@ vrrp_instance VI_1 {
         auth_pass {{ AUTH_PASS }}
     }
     virtual_ipaddress {
-        {{ APISERVER_VIP }}
+{% for backend in APISERVER_VIP %}
+        server {{ backend.name }} {{ backend.address }}:{{ backend.port }} check
+{% endfor %}
     }
     track_script {
         check_apiserver

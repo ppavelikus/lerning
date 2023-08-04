@@ -11,4 +11,14 @@ PRIORITY: 101
 #some pass
 AUTH_PASS: 123213213
 #ip
-APISERVER_VIP: 192.168.103.12
+APISERVER_VIP:
+  - name: app1
+    address: 192.168.103.12
+    port: 6443
+  - name: app2
+    address: 192.168.103.11
+    port: 6443
+  - name: app3
+    address: 192.168.103.10
+    port: 6443
+
