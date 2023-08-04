@@ -3,6 +3,5 @@
   hosts: "{{ hn }}"
   become: yes
   roles:
-    - role: prepare_linux
-    - role: install_zabbix_agent
+    - role: test
       when: ansible_facts['os_family'] == 'Debian'

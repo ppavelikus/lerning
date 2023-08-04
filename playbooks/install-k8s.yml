@@ -85,26 +85,12 @@
           url: "https://dl.k8s.io/apt/doc/apt-key.gpg"
           state: present          
 
-#     - name: Download the Google Cloud public signing key
-#       shell: |
-#               curl -fsSL https://dl.k8s.io/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg
-
-#     - name: Create kubernetes repo file
-#       file:
-#         path: "/etc/apt/sources.list.d/kubernetes.list"
-#         state: "touch"
 
      - name: Add K8s Source
        ansible.builtin.apt_repository:
           repo: "deb https://apt.kubernetes.io/ kubernetes-xenial main"
           state: present
           filename: kubernetes
-
-#     - name: Add K8s Source
-#       blockinfile:
-#         path: "/etc/apt/sources.list.d/kubernetes.list"
-#         block: |
-#               deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
 
      - name: Install kubelet,kubeadm,kubectl on Debian
        ansible.builtin.apt:

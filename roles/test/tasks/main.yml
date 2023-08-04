@@ -1,0 +1,6 @@
+---
+# tasks file for test
+- name: copy file inlto /root
+  ansible.builtin.template:
+    src: master.j2
+    dest: /root/keepalivd.conf
