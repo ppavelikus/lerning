@@ -1,0 +1,29 @@
+---
+# vars file for test
+# https://github.com/kubernetes/kubeadm/blob/main/docs/ha-considerations.md#kube-vip
+# MASTER OR BACKUP
+#STATE: MASTER
+# Interface
+#INTERFACE: ens03
+# Any number
+ROUTER_ID: 100
+# MASTER is higher number, for exsample: MASTER: 101, BACKUP: 100
+PRIORITY: 100
+# some pass
+AUTH_PASS: 123213213
+# ip
+APISERVER_VIP: 192.168.103.46
+# default port of haproxy
+APISERVER_DEST_PORT: 8888
+# default port API Server
+APISERVER_SRC_PORT: 6443
+# address list of servers with control plane
+APISERVER_LIST_FOR_HAPROXY:
+  - name: app1
+    address: 192.168.103.45
+  - name: app2
+    address: 192.168.103.42
+  - name: app3
+    address: 192.168.103.43
+  - name: app4
+    address: 192.168.103.44

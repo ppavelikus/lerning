@@ -1,0 +1,30 @@
+---
+# tasks file for prepare_linux
+- name: Install keepalived
+  ansible.builtin.apt:
+    name:
+      - keepalived
+      - haproxy
+    state: present
+    update_cache: true
+  
+- name: Copy configs to /etc/keepalived/
+  ansible.builtin.template:
+    src: {{ item }}
+    dest: 
+  loop:
+    - keepalived.j2
+    - check_apiserver.j2
+- name: Copy config to /etc/haproxy/
+  ansible.builtin.template:
+    src: haproxy.j2
+    dest: /etc/haproxy/haproxy.cfg
+
+- name: Set services keepalived and haproxy enabled
+  ansible.builtin.service:
+  name: "{{ item }}"
+  loop:
+    - keepalived
+    - haproxy
+  enabled: true
+...

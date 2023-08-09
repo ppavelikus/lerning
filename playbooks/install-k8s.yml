@@ -1,5 +1,5 @@
 ---
-- name: Install kubernetes
+- name: Install kubernetes only on Debian
   hosts: "{{ hn }}"
   become: yes
   gather_facts: yes

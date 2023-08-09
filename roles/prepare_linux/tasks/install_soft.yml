@@ -1,7 +1,7 @@
  #==== Debian ====
 - block:
   - name: install sudo,mc,net-tools on Debian
-    apt: name=sudo,mc,net-tools,xz-utils state=latest install_recommends=yes update_cache=yes
+    apt: name=sudo,mc,net-tools,xz-utils,software-properties-common state=latest install_recommends=yes update_cache=yes
 #  - name: Set user to group sudo
 #    shell:
 #      cmd: /usr/sbin/usermod -aG sudo '{{ username }}'

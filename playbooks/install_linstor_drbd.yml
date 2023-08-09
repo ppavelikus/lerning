@@ -1,0 +1,46 @@
+---
+- name: Install LINSTOR BRDB
+  hosts: "{{ hn }}"
+  tasks:
+    - name: Add repo key linbit.com
+      ansible.builtin.apt_key:
+          url: "https://packages.linbit.com/package-signing-pubkey.asc"
+          state: present
+    - name: Add repo linbit.com
+      ansible.builtin.apt_repository:
+        repo: "deb http://packages.linbit.com/proxmox/ proxmox-7 drbd-9"
+        state: present
+        filename: linbit
+#    - name: apt upgrade
+#      ansible.builtin.apt:
+#        update_cache: yes
+#        upgrade: full
+#      register: debian_output
+#    - debug:
+#        var: debian_output
+    - name: Install DRBD version 9
+      ansible.builtin.apt:
+        name: 
+          - drbd-dkms
+          - drbd-utils
+        state: present
+#        update_cache: true
+    - name: Check module
+      shell: |
+             modprobe drbd
+             cat /proc/drbd | grep "version: [1-9]" -o
+      register: modprobe_info
+    - debug:
+        var: modprobe_info
+    - name: Install on nodes cluster Linstor-satellite
+      ansible.builtin.apt:
+        name:
+          - linstor-client
+          - linstor-satellite
+        state: present
+    - name: Start service Linstor-satellite
+      ansible.builtin.service:
+        name: linstor-satellite
+        state: restarted
+        enabled: yes
+
