@@ -1,7 +1,9 @@
 ---
 - name: start role
   hosts: "{{ hn }}"
-  become: yes
+# We need use become-method: su, and good idea set PATH one more time
+  environment:
+    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
   roles:
     - role: prepare_linux
     - role: install_zabbix_agent

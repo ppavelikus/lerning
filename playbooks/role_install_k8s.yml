@@ -1,6 +1,0 @@
----
-- name: Role: Install keepalived and haproxy with configs for k8s
-  hosts: "{{ hn }}"
-  roles:
-    - role: install_keepalived_and_haproxy_k8s
-      when: ansible_facts['os_family'] == 'Debian'

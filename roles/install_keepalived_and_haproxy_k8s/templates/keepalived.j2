@@ -12,6 +12,7 @@ vrrp_script check_apiserver {
 }
 
 vrrp_instance VI_1 {
+# MASTER OR BACKUP
     state ${STATE}
     interface ${INTERFACE}
     virtual_router_id {{ ROUTER_ID }}

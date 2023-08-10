@@ -8,13 +8,17 @@
     state: present
     update_cache: true
   
+- name: Copy config to /etc/keepalived/
+  ansible.builtin.template:
+    src: keepalived.j2
+    dest: /etc/keepalived/keepalived.conf
+
 - name: Copy configs to /etc/keepalived/
   ansible.builtin.template:
-    src: {{ item }}
-    dest: 
-  loop:
-    - keepalived.j2
-    - check_apiserver.j2
+    src: check_apiserver.j2
+    dest: /etc/keepalived/check_apiserver.sh
+    mode: 0755
+
 - name: Copy config to /etc/haproxy/
   ansible.builtin.template:
     src: haproxy.j2
@@ -22,9 +26,9 @@
 
 - name: Set services keepalived and haproxy enabled
   ansible.builtin.service:
-  name: "{{ item }}"
+    name: "{{ item }}"
+    enabled: true
   loop:
     - keepalived
     - haproxy
-  enabled: true
 ...

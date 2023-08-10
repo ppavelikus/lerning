@@ -1,8 +1,0 @@
----
-- name: Run role keepalived
-  hosts: "{{ hn }}"
-  become: yes
-  roles:
-    - role: install_keepalived_k8s
-      when: ansible_facts['os_family'] == 'Debian'
-

@@ -2,5 +2,5 @@
 ansible_user                 : "{{ vault_ansible_user }}"
 ansible_password             : "{{ vault_ansible_password }}"
 #ansible_ssh_private_key_file : /root/.ssh/id_rsa
-#ansible_become_method        : su
+ansible_become_method        : su
 ansible_become_password      : "{{ vault_ansible_become_password }}"
