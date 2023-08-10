@@ -9,11 +9,11 @@ Requirements
 
 Dependencies
 --------------
-Эту роль использовать после установки ПО kubernetes.io на ноды
+Эту роль использовать для установки ПО kubernetes.io на ноды
 
-Для установки запускать playbook: 
+Если не нужен HA kubernetes, то используй Playbook с командами на установку: 
 ```
-../playbooks/install_k8s.yml
+tasks/install_k8s.yml
 ```
 
 Role Variables

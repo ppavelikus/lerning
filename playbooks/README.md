@@ -17,8 +17,6 @@ initnewuser.yml
 install_apache.yml
 # Установка docker.io, взял готовый и обновил его (2023)
 install_docker.yml
-# Установка kubernetis, взял готовый и обновил его (2023) 
-install_k8s.yml
 # Установка linstor
 install_linstor_drbd.yml
 # Файл c репозиториями для Linux Oracle 7

@@ -1,5 +1,8 @@
 ---
 # tasks file for prepare_linux
+- name: Before run playbook install_k8s.yml
+  import_tasks: install_k8s.yml
+
 - name: Install keepalived
   ansible.builtin.apt:
     name:
