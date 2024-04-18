@@ -1,0 +1,44 @@
+---
+# tasks file for install_filebeat
+- include_tasks: install_filebeat.yml
+  when: ansible_os_family == 'Debian'
+  tags: only_install
+
+- block:
+  - name: Copy Filebeat configuration.
+    template:
+      src: "{{ filebeat_template }}"
+      dest: "/etc/filebeat/filebeat.yml"
+      owner: root
+      group: root
+      mode: 0644
+    notify: restart filebeat
+
+  - name: Ensure Filebeat SSL directories exist.
+    file:
+      path: "{{ item }}"
+      state: directory
+      mode: 0755
+    loop:
+      - "{{ filebeat_ssl_certs_dir }}"
+      - "{{ filebeat_ssl_private_dir }}"
+    when: filebeat_ssl_key_file | default(false)
+
+  - name: Copy SSL key and cert for filebeat.
+    copy:
+      src: "{{ item.file }}"
+      dest: "{{ item.dir }}/{{ item.file | basename }}"
+      mode: 0644
+    with_items:
+      - dir: "{{ filebeat_ssl_private_dir }}"
+        file: "{{ filebeat_ssl_key_file }}"
+      - dir: "{{ filebeat_ssl_certs_dir }}"
+        file: "{{ filebeat_ssl_certificate_file }}"
+    notify: restart filebeat
+    when:
+      - filebeat_ssl_copy_files
+      - filebeat_ssl_key_file | default(false)
+      - filebeat_ssl_certificate_file | default(false)
+  when: filebeat_create_config | bool
+  tags: copy
+

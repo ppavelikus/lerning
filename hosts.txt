@@ -1,3 +1,9 @@
+[home]
+elk        ansible_host=192.168.56.101
+#opensearch ansible_host=192.168.55.158
+ansible    ansible_host=localhost
+test    ansible_host=192.168.56.103
+
 [linux]
 debian3 ansible_host=192.168.15.5
 debian2 ansible_host=192.168.15.6 

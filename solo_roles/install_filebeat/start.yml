@@ -1,0 +1,7 @@
+---
+- name: START
+  hosts: filebeat
+  gather_facts: yes
+  become: yes
+  roles:
+    - role: filebeat

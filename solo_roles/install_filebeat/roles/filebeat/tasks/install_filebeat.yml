@@ -1,0 +1,37 @@
+---
+#- name: install FileBeat
+#  hosts: "{{ hn }}"
+#  become: true
+#  tasks:
+#####
+## BLOCK For Debian OS Family
+#####
+#    - block:
+      - name: Install apt-transport-https on Debian
+        ansible.builtin.apt:
+          name:
+            - apt-transport-https
+            - ca-certificates
+            - lsb-release
+            - gnupg
+          state: latest
+          update_cache: true
+
+      - name: Add signing key on Debian
+        ansible.builtin.apt_key:
+          url: "http://elasticrepo.serveradmin.ru/elastic.asc"
+          state: present
+
+      - name: Add repository into sources list on Debian
+        ansible.builtin.apt_repository:
+          repo: "deb http://elasticrepo.serveradmin.ru {{ ansible_distribution_release }} main"
+          state: present
+          filename: elastic
+
+      - name: Install FileBeat on Debian
+        ansible.builtin.apt:
+          name:
+            - filebeat
+          state: latest
+          update_cache: true
+#      when: ansible_facts['os_family'] == "Debian"
